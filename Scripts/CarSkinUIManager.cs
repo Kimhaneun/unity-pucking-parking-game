@@ -16,12 +16,11 @@ public class CarSkinUIManager : MonoBehaviour, IBuyable
 
     private void Awake()
     {
-        // 자동차 오브젝트에 자동차 컴포넌트에 자동차 데이터의 가격과 isUnlock을 가져와
         _carData = new ShopCarData();
 
         for (int i = 0; i < _carSelectionButtons.Length; i++)
         {
-            int index = i; // 로컬 변수로 캡처
+            int index = i;
             _carSelectionButtons[i].onClick.AddListener(() => SelectCarSkin(index));
         }
     }
@@ -58,10 +57,10 @@ public class CarSkinUIManager : MonoBehaviour, IBuyable
     private void BuyCarSkin()
     {
         ShopCarData carData = _carSkin.CarData;
-        int cost = carData.Cost; // 자동차의 가격을 가져옵니다
+        int cost = carData.Cost;
 
         if (!CanBuyCarSkin(cost))
-            Debug.Log("돈 없어 그지야");
+            Debug.Log("Purchase not possible");
         else
         {
             InventoryManager.Instance.Coin -= cost;
@@ -73,7 +72,6 @@ public class CarSkinUIManager : MonoBehaviour, IBuyable
     public void OnBuyButtonClick()
     {
         BuyCarSkin();
-        // _carSelectionButtons[0].onClick.Invoke();
     }
 
     public bool CanBuyCarSkin(int cost)
@@ -83,15 +81,4 @@ public class CarSkinUIManager : MonoBehaviour, IBuyable
         else
             return false;
     }
-
-    // public bool CanBuyCarSkin(int costCoinAmount)
-    // {
-    //     if (costCoinAmount <= _currentCoinCount)
-    //     {
-    //         _currentCoinCount -= costCoinAmount;
-    //         return true;
-    //     }
-    //     else
-    //         return false;
-    // }
 }
